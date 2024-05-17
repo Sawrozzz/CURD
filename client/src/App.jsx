@@ -1,16 +1,24 @@
 // src/App.js
-import './App.css'
-import React from 'react';
+import "./App.css";
+import React from "react";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import Profile from "./components/Profile";
+import Home from "./components/Home";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 function App() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-md space-y-4">
-        <h2 className="text-xl font-bold text-gray-900">Hello, Tailwind!</h2>
-        <p className="text-gray-500">This is a simple example of using Tailwind CSS in a React app.</p>
-        <button className="px-4 py-2 bg-blue-500 text-white rounded-md">Click Me</button>
-      </div>
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/register" element={<Register />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/profile" element={<Profile />}></Route>
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
