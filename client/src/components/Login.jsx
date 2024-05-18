@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -7,21 +7,24 @@ const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      axios
-        .post("http://localhost:3000/login", { email, password })
-        .then((result) => {
-          console.log(result);
-          console.log("success");
-            navigate("/profile");
-          
-        })
-        .catch((err) => console.log(err));
-    };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:3000/login", { email, password })
+      .then((result) => {
+        console.log(result);
+
+        const token = result.data.token;
+        document.cookie = `token = ${token};expires=${86400}`;
+
+        navigate("/authRoute/users");
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div className="max-w-md mx-auto mt-8">
+      <h1 className="text-3xl mb-5">Login Your Account</h1>
       <form className="space-y-4" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="email" className="block mb-1">
@@ -60,12 +63,11 @@ const Login = () => {
           Login
         </button>
       </form>
-      <h3 className=" mt-6 mb-6"> Create new account here!!</h3>
+
       <Link
         to="/register"
-        className=" bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
       >
-        SignUp
+        <h3 className=" mt-4 text-blue-700 ax-w-56"> Create new account here!!</h3>
       </Link>
     </div>
   );
