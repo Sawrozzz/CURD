@@ -22,7 +22,7 @@ router.get("/", (req, res) => {
   res.send("hello");
 });
 
-router.get("/users",authenticate, (req, res) => {
+router.get("/users", (req, res) => {
   userModel
     .find({})
     .then((users) => res.json(users))
