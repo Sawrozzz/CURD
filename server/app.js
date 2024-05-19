@@ -1,4 +1,3 @@
-const http = require('http')
 const routes  = require("./routes/routes");
 const express = require("express");
 const app = express();
@@ -20,12 +19,9 @@ app.use(express.urlencoded({ extended: true }));
 
 
 
-const port = 3000;
-const hostname = "localhost";
+const port = 9001;
 app.use("/", routes);
 app.use(express.json());
-const server = http.createServer(app);
 
-server.listen(port, async(req, res) => {
-  console.log(`server started at http://}`);
-});
+
+app.listen(port)

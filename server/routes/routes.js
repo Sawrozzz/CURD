@@ -5,11 +5,11 @@ require("dotenv").config();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookie = require("cookie-parser");
-const authenticate = require('../middleware/auth')
+const authenticate = require("../middleware/auth");
 // const { model } = require("mongoose");
-const router = express.Router()
+const router = express.Router();
 app.use(express.json());
-const userModel = require('../models/user')
+const userModel = require("../models/user");
 
 app.use(cookie());
 const jwtSecret = process.env.JWT_SECRET;
