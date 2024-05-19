@@ -2,7 +2,7 @@ const express = require("express");
 const userModel = require("./models/user");
 const app = express();
 const cors = require("cors");
-
+require("dotenv").config();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookie = require("cookie-parser");
@@ -11,6 +11,7 @@ const authenticate = require("./middleware/auth");
 app.use(express.json());
 
 app.use(cookie());
+const jwtSecret = process.env.JWT_SECRET;
 
 app.use(
   cors({
@@ -119,7 +120,7 @@ app.post("/login", async (req, res) => {
 
     bcrypt.compare(password, user.password, function (err, result) {
       if (result) {
-        let token = jwt.sign({ email: email, userid: user._id }, "shh");
+        let token = jwt.sign({ email: email, userid: user._id }, jwtSecret);
 
     
         res.status(200).json({ token });
