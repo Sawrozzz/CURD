@@ -78,7 +78,6 @@ app.post("/create", async (req, res) => {
     let user = await userModel.findOne({ email });
     if (user) return res.status(500).json({ error: "User already exists" });
     const hashPassword = await bcrypt.hash(password, 10)
-    // console.log(hashPassword);
     const createdUser = await userModel.create({
       email,
       name, password:hashPassword
@@ -97,7 +96,6 @@ app.post("/register", async (req, res) => {
     let user = await userModel.findOne({ email });
     if (user) return res.status(500).json({ error: "User already exists" });
     const hashPassword = await bcrypt.hash(password, 10);
-    // console.log(hashPassword);
     const createdUser = await userModel.create({
       email,
       name,

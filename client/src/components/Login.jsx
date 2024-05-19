@@ -12,7 +12,6 @@ const Login = () => {
     axios
       .post("http://localhost:3000/login", { email, password })
       .then((result) => {
-        console.log(result);
 
         const token = result.data.token;
         document.cookie = `token = ${token};expires=${86400}`;
@@ -23,53 +22,59 @@ const Login = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8">
-      <h1 className="text-3xl mb-5">Login Your Account</h1>
-      <form className="space-y-4" onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email" className="block mb-1">
-            Email
-          </label>
-          <input
-            type="email"
-            name="email"
-            placeholder="Enter Email"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-            className="w-full border border-gray-300 rounded-md px-3 py-2"
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="password" className="block mb-1">
-            Password
-          </label>
-          <input
-            type="password"
-            name="password"
-            placeholder="Enter Password"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-            className="w-full border border-gray-300 rounded-md px-3 py-2"
-            required
-          />
-        </div>
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-        >
-          Login
-        </button>
-      </form>
-
-      <Link
-        to="/register"
-      >
-        <h3 className=" mt-4 text-blue-700 ax-w-56"> Create new account here!!</h3>
+    <>
+      <Link className="text-3xl" to="/">
+        Go To Home
       </Link>
-    </div>
+      <div className="max-w-md mx-auto mt-8">
+        <h1 className="text-3xl mb-5">Login Your Account</h1>
+        <form className="space-y-4" onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="email" className="block mb-1">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter Email"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              className="w-full border border-gray-300 rounded-md px-3 py-2"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="password" className="block mb-1">
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter Password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              className="w-full border border-gray-300 rounded-md px-3 py-2"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+          >
+            Login
+          </button>
+        </form>
+
+        <Link to="/register">
+          <h3 className=" mt-4 text-blue-700 ax-w-56">
+            {" "}
+            Create new account here!!
+          </h3>
+        </Link>
+      </div>
+    </>
   );
 };
 

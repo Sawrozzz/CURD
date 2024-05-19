@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 const Home = () => {
   return (
     <>
-      <h1 className="mb-6">This is home page</h1>
+      <h1 className="mb-6 font-sans font-bold text-2xl">This is home page</h1>
+      <h2 className='mt-4 mb-4 text-red-500'>You can't go to Manage User until you are registerd and loggedIN. So signup first</h2>
       <div className="flex flex-row gap-5">
         <Link
           to="/authRoute/users"
-          className=" bg-red-500 text-white px-4 py-2 rounded-md"
+          className=" bg-yellow-500 text-white px-4 py-2 rounded-md"
         >
           Manage User
         </Link>
