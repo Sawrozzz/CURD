@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
   res.send("hello");
 });
 
-app.get("/users", authenticate, (req, res) => {
+app.get("/users", (req, res) => {
 
   userModel
     .find({})
