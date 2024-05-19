@@ -22,7 +22,7 @@ router.get("/", (req, res) => {
   res.send("hello");
 });
 
-router.get("/users", (req, res) => {
+router.get("/users", authenticate, (req, res) => {
   userModel
     .find({})
     .then((users) => res.json(users))
@@ -66,7 +66,7 @@ router.delete("/users/deleteUser/:id", authenticate, (req, res) => {
     .catch((err) => res.json(err));
 });
 
-router.post("/create", async (req, res) => {
+router.post("/create", authenticate, async (req, res) => {
   let { name, email, password } = req.body;
   try {
     let user = await userModel.findOne({ email });
@@ -85,7 +85,7 @@ router.post("/create", async (req, res) => {
     res.status(500).json({ error: "Server Error" });
   }
 });
-router.post("/register", async (req, res) => {
+router.post("/register", authenticate, async (req, res) => {
   let { name, email, password } = req.body;
   try {
     let user = await userModel.findOne({ email });
@@ -105,7 +105,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-router.post("/login", async (req, res) => {
+router.post("/login", authenticate, async (req, res) => {
   let { email, password } = req.body;
 
   try {

@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 
-const port = 9001;
+const port = 3000;
 app.use("/", routes);
 app.use(express.json());
 
